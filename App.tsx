@@ -1,6 +1,6 @@
 import { Roboto_400Regular, Roboto_700Bold, useFonts } from '@expo-google-fonts/roboto';
 import { Groups } from "@screens/Groups";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "styled-components/native";
 import theme from "./src/theme";
 
 import { Loading } from "@components/Loading";
