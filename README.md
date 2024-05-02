@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  A Task Manager app
+  A Team Management App
 </p>
 
 <p align="center">
@@ -30,14 +30,13 @@
 
 ## Functionalities
 
-- Create a new task
-- complete tasks
-- delete tasks
+- Create a new Team
+- Screen Navigation 
+- delete Teams
 
 ***Validations***
-- cannot create an empty task
-- cannot create the same task
-- You cannot create a task if you have already completed it
+- it is not possible to create a team with the same name
+
 
 ***Future Feteares***
 - New Page for tasks completeds
