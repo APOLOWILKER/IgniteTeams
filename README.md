@@ -17,7 +17,7 @@
 <p align="center">
   <img alt="Typescript Badge" src="https://img.shields.io/badge/Typescript-blue"/>
   <img alt="License" src="https://img.shields.io/badge/ReactNative-gray"/>
-<!--   <img alt="License" src="https://img.shields.io/badge/MIT-green"/> -->
+  <img alt="License" src="https://img.shields.io/badge/StyledComponent-green"/>
 </p>
 
 <br>
