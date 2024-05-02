@@ -60,6 +60,11 @@ Here are the packages used in this project.
 - <a href="https://www.npmjs.com/package/babel-plugin-module-resolver" target="_blank">babel-plugin-module-resolver</a>
   - Facilitates imports by creating aliases
   
+- <a href="https://github.com/duongdev/phosphor-react-native" target="_blank">phosphor-icons for React Native</a>
+  - Package icons for React Native
+
+- <a href="https://docs.expo.dev/versions/latest/sdk/svg/" target="_blank">React Native - SVG</a>
+  - Package for SVG img React Native
 ---
 
 # 💻 Getting started
