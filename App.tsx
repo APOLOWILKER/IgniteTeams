@@ -21,8 +21,8 @@ export default function App() {
         translucent
       />
    
-      {/* { fontsLoaded ? <NewGroup /> : <Loading /> } */}
       {/* { fontsLoaded ? <Groups /> : <Loading /> } */}
+      {/* { fontsLoaded ? <NewGroup /> : <Loading /> } */}
       { fontsLoaded ? <Players /> : <Loading /> }
     </ThemeProvider>
   );

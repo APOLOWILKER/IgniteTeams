@@ -27,7 +27,7 @@ export function Players() {
       <Form>
       <InputText 
         placeholder="Nome da pessoa"
-        autoCorrect={false}
+        autoCorrect={false} // para não fazer correção
       />
         <ButtonIcon 
         icon="add"
