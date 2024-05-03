@@ -19,6 +19,8 @@ export const Container = styled(TouchableOpacity)<PropsButton>`
 
   justify-content: center;
   align-items: center;
+
+  margin-top: 20px;
 `;
 
 export const Title = styled.Text`
