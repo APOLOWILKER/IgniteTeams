@@ -1,5 +1,6 @@
 import { Button } from "@components/Button";
 import { ButtonIcon } from "@components/ButtonIcon";
+import { Filter } from "@components/Filter";
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
 import { InputText } from "@components/Input";
@@ -21,11 +22,15 @@ export function Players() {
         placeholder="Nome da pessoa"
         autoCorrect={false}
       />
-      <ButtonIcon 
+        <ButtonIcon 
         icon="add"
       />
-
       </Form>
+
+      <Filter 
+        title="Time A"
+        
+      />
 
       <Button
         title="Remover Turma"
