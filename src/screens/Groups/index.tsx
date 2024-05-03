@@ -1,4 +1,5 @@
 
+import { Button } from "@components/Button";
 import { EmptyList } from "@components/EmptyList";
 import { GroupCard } from "@components/GroupCard";
 import { Header } from "@components/Header";
@@ -35,6 +36,10 @@ export function Groups() {
             message="Nenhuma turma encontrada, cadastre a primeira Turma"
           />
         )}
+      />
+
+      <Button 
+        title="Criar Nova Turma"
       />
 
     </Container>
