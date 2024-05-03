@@ -1,5 +1,6 @@
 import { Button } from "@components/Button";
 import { ButtonIcon } from "@components/ButtonIcon";
+import { EmptyList } from "@components/EmptyList";
 import { Filter } from "@components/Filter";
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
@@ -12,7 +13,7 @@ import { Container, Form, HeaderList, NumberOfPlayers } from "./styles";
 
 export function Players() {
   const [team, setTeam] = useState('Time A')
-  const [players, setPlayers] = useState(['Apolo'])
+  const [players, setPlayers] = useState([])
 
   return (
     <Container>
@@ -61,6 +62,16 @@ export function Players() {
             onRemove={() => {}}
           />
         )}
+        ListEmptyComponent={() => (
+          <EmptyList 
+            message="Não há pessoas Nesse Time!"
+          />
+        )}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={[
+          { paddingBottom: 100 },
+          players.length === 0 && { flex: 1}
+        ]}
       />
       
 
