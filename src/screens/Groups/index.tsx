@@ -11,7 +11,6 @@ import { Container } from "./styles";
 export function Groups() {
   const [groups, setGroups] = useState<string[]>([])
 
-
   return (
     <Container>
       <Header />
@@ -40,6 +39,7 @@ export function Groups() {
 
       <Button 
         title="Criar Nova Turma"
+        onPress={handleNewGroup}
       />
 
     </Container>
