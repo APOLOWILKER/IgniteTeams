@@ -5,8 +5,9 @@ import { GroupCard } from "@components/GroupCard";
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList } from "react-native";
+import { groupsGetAll } from "src/storage/group/groupsGetAll";
 import { Container } from "./styles";
 
 export function Groups() {
@@ -17,6 +18,31 @@ export function Groups() {
   function handleNewGroup() {
     navigation.navigate('new')
   }
+
+  async function fetchGroups() {
+    try{
+
+      const data = await groupsGetAll();
+      setGroups(data);
+
+    } catch (error){
+      console.log(error);
+    }
+  }
+
+// para carregar a function fetch
+useEffect(() => {
+  // o que executar...
+  // sempre carrega depois da renderização do component
+  
+  
+  console.log("executou UseEffect");
+  
+  fetchGroups();
+  }, []
+  // array diz a quantidade de vezes que ele tem que executar
+  // vazio 1 vez
+);
 
 
   return (
