@@ -5,6 +5,7 @@ import { Filter } from "@components/Filter";
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
 import { InputText } from "@components/Input";
+import { Loading } from "@components/Loading";
 import { PlayersCard } from "@components/PlayersCard";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { AppError } from "@utils/AppError";
@@ -23,15 +24,19 @@ type RouteParams = {
 }
 
 export function Players() {
+  const [isLoading, setIsLoading] = useState(true);
   const [newPlayerName, setNewPlayerName] = useState('');
   const [team, setTeam] = useState('Time A');
   const [players, setPlayers] = useState<PlayerStorageDTO[]>([]);
+
+  // create reference
+  const newPlayerNameInputRef = useRef<TextInput>(null);
 
   const navigation = useNavigation();
   const route = useRoute();
   const { group } = route.params as RouteParams;
 
-  const newPlayerNameInputRef = useRef<TextInput>(null)
+
 
   async function handleAddPlayer() {
     if (newPlayerName.trim().length === 0) {
@@ -65,9 +70,10 @@ export function Players() {
 
   async function fetchPlayersByTeam() {
     try {
+      setIsLoading(true);
       const playersByTeam = await playerGetByGroupAndTeam(group, team);
       setPlayers(playersByTeam);
-
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
       Alert.alert('Erro', 'Não foi possível carregar os jogadores filtrados.')
@@ -162,6 +168,10 @@ export function Players() {
         </NumberOfPlayers>
       </HeaderList>
 
+
+      {
+        isLoading ? <Loading /> :
+           
       <FlatList 
         data={players}
         keyExtractor={item => item.name}
@@ -182,7 +192,8 @@ export function Players() {
           players.length === 0 && { flex: 1}
         ]}
       />
-      
+       
+    }
 
       <Button
         title="Remover Turma"

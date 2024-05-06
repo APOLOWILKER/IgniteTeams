@@ -1,9 +1,9 @@
-
-import { Button } from "@components/Button";
+import { Button } from '@components/Button';
 import { EmptyList } from "@components/EmptyList";
 import { GroupCard } from "@components/GroupCard";
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
+import { Loading } from "@components/Loading";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
@@ -11,6 +11,7 @@ import { groupsGetAll } from "src/storage/group/groupsGetAll";
 import { Container } from "./styles";
 
 export function Groups() {
+  const [isLoading, setIsLoading] = useState(true);
   const [groups, setGroups] = useState<string[]>([])
 
   const navigation = useNavigation();
@@ -21,9 +22,10 @@ export function Groups() {
 
   async function fetchGroups() {
     try{
-
+      setIsLoading(true);
       const data = await groupsGetAll();
       setGroups(data);
+      setIsLoading(false);
 
     } catch (error){
       console.log(error);
@@ -49,8 +51,6 @@ export function Groups() {
 // );
 
 useFocusEffect(useCallback(()=> {
-  console.log('useFocus Executou');
-  
   fetchGroups();
 },[]))
 
@@ -63,6 +63,8 @@ useFocusEffect(useCallback(()=> {
         subTitle="Jogue com a sua Turma"
       />
 
+      {
+        isLoading? <Loading /> :
       <FlatList 
         data={groups}
         keyExtractor={item => item}
@@ -81,6 +83,7 @@ useFocusEffect(useCallback(()=> {
           />
         )}
       />
+      }
 
       <Button 
         title="Criar Nova Turma"

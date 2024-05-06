@@ -27,7 +27,7 @@ export function NewGroup() {
 
     } catch (error){
       if(error instanceof AppError) {
-        Alert.alert("Novo Grupo",error.message)
+        Alert.alert("Novo Grupo", error.message)
       } else {
         Alert.alert("Novo Grupo",'Não foi possível criar um novo grupo.')
         console.log(error);
