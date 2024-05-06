@@ -30,7 +30,11 @@ export function Groups() {
     }
   }
 
-// para carregar a function fetch
+  function handleOpenGroup(group: string) {
+    navigation.navigate('players', {group});
+  }
+
+// // para carregar a function fetch
 // useEffect(() => {
 //   // o que executar...
 //   // sempre carrega depois da renderização do component
@@ -64,7 +68,8 @@ useFocusEffect(useCallback(()=> {
         keyExtractor={item => item}
         renderItem={({item}) => (
           <GroupCard 
-            title={item} 
+            title={item}
+            onPress={() => handleOpenGroup(item)}
           />
         )}
         contentContainerStyle={groups.length === 0 && 
