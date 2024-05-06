@@ -8,8 +8,8 @@ import { InputText } from "@components/Input";
 import { PlayersCard } from "@components/PlayersCard";
 import { useRoute } from "@react-navigation/native";
 import { AppError } from "@utils/AppError";
-import { useEffect, useState } from "react";
-import { Alert, FlatList } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import { Alert, FlatList, TextInput } from "react-native";
 import { PlayerStorageDTO } from "src/storage/players/PlayerStorageDTO";
 import { playerAddByGroup } from "src/storage/players/playerAddByGroup";
 import { playerGetByGroupAndTeam } from "src/storage/players/playerGetByGroupAndTeam";
@@ -28,6 +28,8 @@ export function Players() {
   const route = useRoute();
   const { group } = route.params as RouteParams;
 
+  const newPlayerNameInputRef = useRef<TextInput>(null)
+
   async function handleAddPlayer() {
     if (newPlayerName.trim().length === 0) {
       return Alert.alert('Nova pessoa', 'Informe o nome da pessoa para adicionar.');
@@ -41,6 +43,11 @@ export function Players() {
     try{
 
       await playerAddByGroup(newPlayer, group);
+
+      newPlayerNameInputRef.current?.blur(); // tirar o foco do input e fecha o teclado
+      // Keyboard.dismiss(); // Para fechar o teclado
+
+      setNewPlayerName(''); // limpar o input
       fetchPlayersByTeam(); // chamo de novo para atualizar a lista
       
     } catch(error){
@@ -81,10 +88,14 @@ export function Players() {
       />
 
       <Form>
-        <InputText 
+        <InputText
+          inputRef={newPlayerNameInputRef} // tirar o foco do input
           placeholder="Nome da pessoa"
           autoCorrect={false} // para não fazer correção
           onChangeText={setNewPlayerName}
+          value={newPlayerName}
+          onSubmitEditing={handleAddPlayer} // utiliza o button de enviar do teclado do celular
+          returnKeyType="done"
         />
         
         <ButtonIcon 
