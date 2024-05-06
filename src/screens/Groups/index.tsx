@@ -4,8 +4,8 @@ import { EmptyList } from "@components/EmptyList";
 import { GroupCard } from "@components/GroupCard";
 import { Header } from "@components/Header";
 import { Highlight } from "@components/Highlight";
-import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useCallback, useState } from "react";
 import { FlatList } from "react-native";
 import { groupsGetAll } from "src/storage/group/groupsGetAll";
 import { Container } from "./styles";
@@ -31,18 +31,24 @@ export function Groups() {
   }
 
 // para carregar a function fetch
-useEffect(() => {
-  // o que executar...
-  // sempre carrega depois da renderização do component
+// useEffect(() => {
+//   // o que executar...
+//   // sempre carrega depois da renderização do component
   
   
-  console.log("executou UseEffect");
+//   console.log("executou UseEffect");
+  
+//   fetchGroups();
+//   }, []
+//   // array diz a quantidade de vezes que ele tem que executar
+//   // vazio 1 vez
+// );
+
+useFocusEffect(useCallback(()=> {
+  console.log('useFocus Executou');
   
   fetchGroups();
-  }, []
-  // array diz a quantidade de vezes que ele tem que executar
-  // vazio 1 vez
-);
+},[]))
 
 
   return (
