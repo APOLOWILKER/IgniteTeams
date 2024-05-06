@@ -13,6 +13,7 @@ import { Alert, FlatList, TextInput } from "react-native";
 import { PlayerStorageDTO } from "src/storage/players/PlayerStorageDTO";
 import { playerAddByGroup } from "src/storage/players/playerAddByGroup";
 import { playerGetByGroupAndTeam } from "src/storage/players/playerGetByGroupAndTeam";
+import { playerRemoveByGroup } from "src/storage/players/playerRemoveByGroup";
 import { Container, Form, HeaderList, NumberOfPlayers } from "./styles";
 
 
@@ -68,6 +69,18 @@ export function Players() {
     } catch (error) {
       console.log(error);
       Alert.alert('Erro', 'Não foi possível carregar os jogadores filtrados.')
+    }
+  }
+
+
+  async function handleRemovePlayer(playerName: string) {
+    try {
+      await playerRemoveByGroup(playerName, group);
+      fetchPlayersByTeam();
+
+    } catch (error) {
+    console.log(error);
+    Alert.alert('Erro', 'Não foi possível remover a pessoa.')
     }
   }
 
@@ -129,7 +142,7 @@ export function Players() {
         renderItem={({ item}) => (
           <PlayersCard 
             name={item.name}
-            onRemove={() => {}}
+            onRemove={() => handleRemovePlayer(item.name)}
           />
         )}
         ListEmptyComponent={() => (
